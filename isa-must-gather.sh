@@ -85,14 +85,9 @@ esac
 
 
 # run command
-#echo " FINAL OPTION : [${OPTION_REPLY}] ${OPTION_NAME}, OCP LOG : ${INCLUDE_OCP} , Instance ID : ${INST_ID}"
 echo "oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG"
-#oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG
+oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG
 echo "✔️ must-gather completed"
 #make into tar.ball
 tar -czvf "$FILE_PREFIX$(date "+%Y%m%d")".tar.gz ./$FILE_PREFIX$(date "+%Y%m%d")/
 echo "✔️ tarball completed "
-#echo "tar -czvf $FILE_PREFIX$(date "+%Y%m%d").tar.gz ./$FILE_PREFIX$(date "+%Y%m%d")/" 
-
-# if openshift cluster info is required
-#--image-stream=openshift/must-gather
