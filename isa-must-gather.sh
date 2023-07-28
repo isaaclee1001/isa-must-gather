@@ -89,7 +89,9 @@ esac
 echo "oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG"
 #oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG
 
-
+#make into tar.ball
+tar -czvf "$FILE_PREFIX$(date "+%Y%m%d")".tar.gz ./$FILE_PREFIX$(date "+%Y%m%d")/" 
+#echo "tar -czvf $FILE_PREFIX$(date "+%Y%m%d").tar.gz ./$FILE_PREFIX$(date "+%Y%m%d")/" 
 
 # if openshift cluster info is required
 #--image-stream=openshift/must-gather
