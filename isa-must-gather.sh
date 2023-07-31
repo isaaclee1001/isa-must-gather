@@ -57,13 +57,13 @@ case $OPTION_REPLY in
         FILE_PREFIX="healthmg"
         MAS_COMPONENT_FLAG="-n mas-$INSTANCE_ID-health"
 		;;
-    "0")
-        echo "[0. Exit] was chosen"
+    "5")
+        echo "[5. Exit] was chosen"
 		exit 0
         ;;
 
    *)
-        "Invalid Option : cli exit..."
+        echo "Invalid Option : cli exit..."
 		exit 1
         ;;
 esac
@@ -78,8 +78,9 @@ case $INCLUDE_OCP in
 				echo "EXCLUDE Openshift logs" 
 				OCP_FLAG=" "
 				;;
-		*)
-				echo "[error] Unknown command."
+		*)      
+				echo "[error] OCP_OPTION : input error. Default = 'N'"
+                OCP_FLAG=" "
         ;;
 esac
 
