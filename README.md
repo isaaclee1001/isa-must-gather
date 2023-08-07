@@ -2,18 +2,15 @@
 <details>
 <summary>한국어</summary>
 
-must-gather는 openshift cluster 및 위에 배포된 MAS Application 로그를 추출할수 있는 client tool이다.
-Openshift와 MAS 라는 미지의 세계를 경험하다보면 수많은 문제와 질문에 봉착하게 된다. 
-그럴때마다, must-gather 명령어를 찾아서 입력하는 불편함과정을 줄이기위해서 isa-must-gather라는 tool을 만들었다.
-
-## 용도
-문제 발생시, MUST-GATHER를 이용해서 openshift 및 MAS 관련 로그를 추출하는 troubleshooting 용도 많이 사용된다.
-log 추출을 위해서 아래 링크에 명시된 명령어를 찾아서 입력해야한다. 이런 불편함을 감소하기 위해서 isa-must-gather라는 tool을 만들었다.
+must-gather는 openshift cluster 및 위에 배포된 MAS Application 로그를 추출할수 있는 client tool 입니다.
 
 Openshift must-gather : https://docs.openshift.com/container-platform/4.10/support/gathering-cluster-data.html#gathering-data-specific-features_gathering-cluster-data
 
 IBM MAS must-gather : https://www.ibm.com/support/pages/node/6487991
 
+## 용도
+문제 발생시, MUST-GATHER를 이용해서 openshift 및 MAS 관련 로그를 추출하는 troubleshooting 용도 사용됩니다.
+log 추출을 위해서 위 링크에 명시된 명령어를 찾아서 입력해야하나, 이런 불편함을 감소하기 위해서 isa-must-gather라는 tool을 만들었다.
 
 ## 사용방법
 1. script를 받아서 서버에 설치한다.
