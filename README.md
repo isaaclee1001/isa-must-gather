@@ -22,6 +22,9 @@ git clone https://github.com/isaaclee1001/isa-must-gather.git
 ```
 [1.2] Release에서 다운로드하기
 
+![release download](https://github.com/isaaclee1001/isa-must-gather/blob/main/readme_image_release.png)
+
+
 [2]실행하기
 shell sciprt 받은 directory = must-gather  LOG 다운받는 directory
 
