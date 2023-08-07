@@ -16,15 +16,16 @@ IBM MAS must-gather : https://www.ibm.com/support/pages/node/6487991
 
 
 ## 사용방법
-1. script를 받아서 서버에 설치한다.
-1.1.Git clone 하기
+[1] script를 받아서 서버에 설치한다.
+
+[1.1] Git clone 하기
 ```
 #원하는 directory로 이동후, 
 git clone https://github.com/isaaclee1001/isa-must-gather.git
 ```
-1.2. Release에서 다운로드하기
+[1.2] Release에서 다운로드하기
 
-2.실행하기
+[2]실행하기
 shell sciprt 받은 directory = must-gather  LOG 다운받는 directory
 
 ```
@@ -32,6 +33,25 @@ sh isa-must-gather.sh
 ```
 log 추출을 기다린다.
 
+[3] Option 설명
+
+```
+MAS COMPONENTS:
+
+1. MAS application  <--- MAS 전체 관련 로그 추출
+2. MAS Core         <--- CORE 관련 로그만 추출
+3. MAS Manage
+4. MAS Health
+5. Exit
+- - - - - - - - - - - - - -
+Which MAS component log do you need? ( 1 ~ 5 ):  1
+Please Input MAS Instance ID: inst      <------ MAS Instance명 입력 : 현재 설치 instance 명 = inst
+Include Openshift Cluster logs (Y/N)? Y   <------ openshift log 필요시 : yes
+```
+💡 현재 어는 부분이 문제 일지 모를 경우 -> Openshift 전체, MAS 전체 로그 추출, option은 아래와 같다
+1. MAS Application
+2. MAS instance ID : inst 
+3. Openshift clust log : yes
 
 ## 미작동시..
  위 Shell script미작동시,
