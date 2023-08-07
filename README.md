@@ -1,15 +1,46 @@
 # isa-must-gather : 
 <details>
 <summary>한국어</summary>
-isa-must-gather는 
-must-gather는 현 openshift cluster 정보를 추출하는 client tool이다. 
-Opeshift위에 배포된 MAS application 상태도 추출 가능하다.
-Openshift와 MAS 라는 미지의 세계를 경험하다보면 수많은 문제와 질문에 봉착하게 된다. 그럴때마다, must-gather 명령어를 찾아서 입력하는 과정이 불편함을 isa-must-gather라는 tool을 만들었다.
 
-TO-DO 
-isa-must-gather는 현재 MAS component 중심적으로 설계되었다. 추후, Openshift에 대한 상세 component를 명시할수 있도록 기능을 추가할 계획이다.
+must-gather는 openshift cluster 및 위에 배포된 MAS Application 로그를 추출할수 있는 client tool이다.
+Openshift와 MAS 라는 미지의 세계를 경험하다보면 수많은 문제와 질문에 봉착하게 된다. 
+그럴때마다, must-gather 명령어를 찾아서 입력하는 불편함과정을 줄이기위해서 isa-must-gather라는 tool을 만들었다.
+
+## 용도
+문제 발생시, MUST-GATHER를 이용해서 openshift 및 MAS 관련 로그를 추출하는 troubleshooting 용도 많이 사용된다.
+log 추출을 위해서 아래 링크에 명시된 명령어를 찾아서 입력해야한다. 이런 불편함을 감소하기 위해서 isa-must-gather라는 tool을 만들었다.
+
+Openshift must-gather : https://docs.openshift.com/container-platform/4.10/support/gathering-cluster-data.html#gathering-data-specific-features_gathering-cluster-data
+
+IBM MAS must-gather : https://www.ibm.com/support/pages/node/6487991
 
 
+## 사용방법
+1. script를 받아서 서버에 설치한다.
+1.1.Git clone 하기
+```
+#원하는 directory로 이동후, 
+git clone https://github.com/isaaclee1001/isa-must-gather.git
+```
+1.2. Release에서 다운로드하기
+
+2.실행하기
+shell sciprt 받은 directory = must-gather  LOG 다운받는 directory
+
+```
+sh isa-must-gather.sh
+```
+log 추출을 기다린다.
+
+
+## 미작동시..
+ 위 Shell script미작동시,
+1. 원하는 directory 진입
+2. 아래 명령어 실행
+```
+oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") --image-stream=openshift/must-gather --image=quay.io/aiasupport/must-gather -- gather -cgl --mas-instance-id inst
+```
+-> 아래 명령어는 OPENSHIFT cluster & MAS application 전체 log를 추출하는 명령어이다. openshift & MAS 관련 모든 log를 추출하는 관계로 시간이 소요된다.
 </details>
 
 <details>
