@@ -94,3 +94,7 @@ echo "✔️ must-gather completed"
 #make into tar.ball
 tar -czvf "$FILE_PREFIX$CURRENT_DATETIME".tar.gz ./$FILE_PREFIX$CURRENT_DATETIME/
 echo "✔️ tarball completed "
+
+# Delete the folder after creating the tarball
+rm -rf ./"$FILE_PREFIX$CURRENT_DATETIME"/
+echo "✔️ directory removed "
