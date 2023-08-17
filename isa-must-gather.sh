@@ -84,11 +84,13 @@ case $INCLUDE_OCP in
         ;;
 esac
 
+# Store the current date and time in a variable for consistency
+CURRENT_DATETIME=$(date "+%Y%m%d-%H%M%S")
 
 # run command
-echo "oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG"
-oc adm must-gather --dest-dir=./$FILE_PREFIX$(date "+%Y%m%d") $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG
+echo "oc adm must-gather --dest-dir=./$FILE_PREFIX$CURRENT_DATETIME $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG"
+oc adm must-gather --dest-dir=./$FILE_PREFIX$CURRENT_DATETIME $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG
 echo "✔️ must-gather completed"
 #make into tar.ball
-tar -czvf "$FILE_PREFIX$(date "+%Y%m%d")".tar.gz ./$FILE_PREFIX$(date "+%Y%m%d")/
+tar -czvf "$FILE_PREFIX$CURRENT_DATETIME".tar.gz ./$FILE_PREFIX$CURRENT_DATETIME/
 echo "✔️ tarball completed "
