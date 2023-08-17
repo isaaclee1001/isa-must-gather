@@ -17,24 +17,47 @@ by Isaac Lee"
 
 
 # choose mustgather options
-read -p "
-- - - - - - - - - - - - - -
-MAS COMPONENTS:
+while true; do
+    read -p "
+    - - - - - - - - - - - - - -
+    MAS COMPONENTS:
 
-1. MAS application
-2. MAS Core
-3. MAS Manage
-4. MAS Health
-5. Exit
-- - - - - - - - - - - - - -
-Which MAS component log do you need? ( 1 ~ 5 ):  " OPTION_REPLY
+    1. MAS application
+    2. MAS Core
+    3. MAS Manage
+    4. MAS Health
+    5. Exit
+    - - - - - - - - - - - - - -
+    Which MAS component log do you need? ( 1 ~ 5 ) [Default: 1]:  " OPTION_REPLY
 
-read -p "Please Input MAS Instance ID: " INSTANCE_ID
-read -p "Include Openshift Cluster logs (Y/N)? " INCLUDE_OCP
-#INCLUDE_OPC_UPPERCASE="${INCLUDE_OPC^^}"
-#echo ${INCLUDE_OPC}
-# need to validate inputs....
-# how?
+    # Set default value if empty
+    OPTION_REPLY=${OPTION_REPLY:-1}
+
+    # Check if the value is between 1 to 5
+    if [[ "$OPTION_REPLY" =~ ^[1-5]$ ]]; then
+        break
+    else
+        echo "Invalid input. Please choose a number between 1 and 5."
+    fi
+done
+
+read -p "Please Input MAS Instance ID [Default: inst]: " INSTANCE_ID
+INSTANCE_ID=${INSTANCE_ID:-inst}
+
+while true; do
+    read -p "Include Openshift Cluster logs (Y/N) [Default: N]? " INCLUDE_OCP
+
+    # Convert to uppercase and set default value if empty
+    INCLUDE_OCP=$(echo ${INCLUDE_OCP:-N} | tr '[:lower:]' '[:upper:]')
+
+    # Check if the value is Y or N
+    if [[ "$INCLUDE_OCP" == "Y" || "$INCLUDE_OCP" == "N" ]]; then
+        break
+    else
+        echo "Invalid input. Please enter 'Y' or 'N'."
+    fi
+done
+
 # return chosen option
 case $OPTION_REPLY in
     "1")
@@ -85,7 +108,7 @@ case $INCLUDE_OCP in
 esac
 
 # Store the current date and time in a variable for consistency
-CURRENT_DATETIME=$(date "+%Y%m%d-%H%M%S")
+CURRENT_DATETIME=$(date "+%Y%m%d_%H%M%S")
 
 # run command
 echo "oc adm must-gather --dest-dir=./$FILE_PREFIX$CURRENT_DATETIME $OCP_FLAG--image=quay.io/aiasupport/must-gather -- gather -cgl $MAS_COMPONENT_FLAG"
@@ -93,8 +116,8 @@ oc adm must-gather --dest-dir=./$FILE_PREFIX$CURRENT_DATETIME $OCP_FLAG--image=q
 echo "✔️ must-gather completed"
 #make into tar.ball
 tar -czvf "$FILE_PREFIX$CURRENT_DATETIME".tar.gz ./$FILE_PREFIX$CURRENT_DATETIME/
-echo "✔️ tarball completed "
+echo "✔️ tarball completed"
 
 # Delete the folder after creating the tarball
 rm -rf ./"$FILE_PREFIX$CURRENT_DATETIME"/
-echo "✔️ directory removed "
+echo "✔️ directory removed"
