@@ -26,7 +26,9 @@ while true; do
     2. MAS Core
     3. MAS Manage
     4. MAS Health
-    5. Exit
+    5. Suite Licensing Service (SLS)
+    6. Mongo DB
+    0. Exit
     - - - - - - - - - - - - - -
     Which MAS component log do you need? ( 1 ~ 5 ) [Default: 1]:  " OPTION_REPLY
 
@@ -34,10 +36,10 @@ while true; do
     OPTION_REPLY=${OPTION_REPLY:-1}
 
     # Check if the value is between 1 to 5
-    if [[ "$OPTION_REPLY" =~ ^[1-5]$ ]]; then
+    if [[ "$OPTION_REPLY" =~ ^[1-6]$ ]]; then
         break
     else
-        echo "Invalid input. Please choose a number between 1 and 5."
+        echo "Invalid input. Please choose a number from 0 to 6."
     fi
 done
 
@@ -81,7 +83,18 @@ case $OPTION_REPLY in
         MAS_COMPONENT_FLAG="-n mas-$INSTANCE_ID-health"
 		;;
     "5")
-        echo "[5. Exit] was chosen"
+        OPTION_NAME="Suite Licensing Service (SLS)"
+        FILE_PREFIX="sls"
+        MAS_COMPONENT_FLAG="-n ibm-sls"
+		;;
+    "6")
+        OPTION_NAME="Mongo DB"
+        FILE_PREFIX="mongodb"
+        MAS_COMPONENT_FLAG="-n mongo"
+        ;;
+
+    "0")
+        echo "[0. Exit] was chosen"
 		exit 0
         ;;
 
